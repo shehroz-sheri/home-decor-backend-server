@@ -9,15 +9,16 @@ import fs from "fs";
 
 const app = express();
 
+const publicDir = path.join(__dirname, "../public");
+app.use(express.static(publicDir));
+
+// Handle the root route to serve index.html
 app.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "../public/index.html");
-  fs.readFile(filePath, (err, data) => {
+  const filePath = path.join(publicDir, "index.html");
+  res.sendFile(filePath, (err) => {
     if (err) {
       res.status(500).send("Error loading the page.");
-      return;
     }
-    res.setHeader("Content-Type", "text/html");
-    res.send(data);
   });
 });
 
