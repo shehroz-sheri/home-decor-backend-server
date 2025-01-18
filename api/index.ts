@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { createYoga } from "graphql-yoga";
-import { schema } from "./graphql/schema/schema";
-import prisma from "./config/prisma";
+import { schema } from "../src/graphql/schema/schema";
+import prisma from "../src/config/prisma";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
@@ -10,7 +10,7 @@ import fs from "fs";
 const app = express();
 
 app.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "./views/index.html");
+  const filePath = path.join(__dirname, "../public/index.html");
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.status(500).send("Error loading the page.");
