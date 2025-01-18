@@ -5,14 +5,12 @@ import prisma from "../src/config/prisma";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
-import fs from "fs";
 
 const app = express();
 
 const publicDir = path.join(__dirname, "../public");
 app.use(express.static(publicDir));
 
-// Handle the root route to serve index.html
 app.get("/", (req, res) => {
   const filePath = path.join(publicDir, "index.html");
   res.sendFile(filePath, (err) => {
